@@ -20,7 +20,8 @@ my $tzil = Builder->from_config(
             'source/dist.ini' => simple_ini(
                 [ 'GenerateFile::ShareDir' => {
                     '-dist' => 'Some-Other-Dist',
-                    '-source_filename' => 'template.txt',
+                    '-encoding' => 'Latin1',
+                    '-source_filename' => 'template_latin1.txt',
                     '-destination_filename' => 'data/useless_file.txt',
                     numero => 'neuf',
                 } ],
@@ -35,13 +36,12 @@ my $build_dir = $tzil->tempdir->subdir('build');
 my $file = path($build_dir, 'data', 'useless_file.txt');
 ok(-e $file, 'file created');
 
-my $content = $file->slurp_utf8;
+my $content = Encode::decode('Latin1', $file->slurp_raw, Encode::FB_CROAK());
 
 my $zilla_version = Dist::Zilla->VERSION;
 
 like($content, qr/^This file was generated with Dist::Zilla::Plugin::GenerateFile::ShareDir /, '$plugin is passed to the template');
 like($content, qr/Dist::Zilla $zilla_version/, '$zilla is passed to the template');
 like($content, qr/Le numéro de Maurice Richard est neuf./, 'arbitrary args are passed to the template');
-like($content, qr/¡And hello 김도형 - Keedi Kim!/, 'encoding looks good (hi 김도형)');
 
 done_testing;

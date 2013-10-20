@@ -10,11 +10,13 @@ Makefile.PL
 README
 dist.ini
 lib/Dist/Zilla/Plugin/GenerateFile/ShareDir.pm
-t/00-compile.t
 t/00-report-prereqs.t
 t/01-basic.t
+t/02-other-encoding.t
 t/corpus/template.txt
+t/corpus/template_latin1.txt
 weaver.ini
+xt/author/00-compile.t
 xt/author/pod-spell.t
 xt/release/changes_has_content.t
 xt/release/clean-namespaces.t
@@ -25,6 +27,7 @@ xt/release/kwalitee.t
 xt/release/minimum-version.t
 xt/release/mojibake.t
 xt/release/no-tabs.t
+xt/release/pod-coverage.t
 xt/release/pod-no404s.t
 xt/release/pod-syntax.t
 xt/release/test-version.t
