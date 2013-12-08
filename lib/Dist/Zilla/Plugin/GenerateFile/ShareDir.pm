@@ -1,14 +1,14 @@
 use strict;
 use warnings;
 package Dist::Zilla::Plugin::GenerateFile::ShareDir;
+{
+  $Dist::Zilla::Plugin::GenerateFile::ShareDir::VERSION = '0.003';
+}
+# git description: v0.002-4-g8439219
+
 BEGIN {
   $Dist::Zilla::Plugin::GenerateFile::ShareDir::AUTHORITY = 'cpan:ETHER';
 }
-{
-  $Dist::Zilla::Plugin::GenerateFile::ShareDir::VERSION = '0.002';
-}
-# git description: v0.001-6-g372f6ca
-
 # ABSTRACT: Create files in the build, based on a template located in a dist sharedir
 # vim: set ts=8 sw=4 tw=78 et :
 
@@ -19,7 +19,7 @@ with (
     'Dist::Zilla::Role::TextTemplate',
 );
 
-use MooseX::SlurpyConstructor;
+use MooseX::SlurpyConstructor 1.2;
 use Scalar::Util 'blessed';
 use File::ShareDir 'dist_file';
 use Path::Tiny;
@@ -148,7 +148,7 @@ Dist::Zilla::Plugin::GenerateFile::ShareDir - Create files in the build, based o
 
 =head1 VERSION
 
-version 0.002
+version 0.003
 
 =head1 SYNOPSIS
 
