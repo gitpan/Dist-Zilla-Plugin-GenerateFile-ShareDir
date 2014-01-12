@@ -1,11 +1,8 @@
 use strict;
 use warnings;
 package Dist::Zilla::Plugin::GenerateFile::ShareDir;
-{
-  $Dist::Zilla::Plugin::GenerateFile::ShareDir::VERSION = '0.003';
-}
-# git description: v0.002-4-g8439219
-
+# git description: v0.003-5-gdb26ab5
+$Dist::Zilla::Plugin::GenerateFile::ShareDir::VERSION = '0.004';
 BEGIN {
   $Dist::Zilla::Plugin::GenerateFile::ShareDir::AUTHORITY = 'cpan:ETHER';
 }
@@ -22,7 +19,7 @@ with (
 use MooseX::SlurpyConstructor 1.2;
 use Scalar::Util 'blessed';
 use File::ShareDir 'dist_file';
-use Path::Tiny;
+use Path::Tiny 0.04;
 use Encode;
 use namespace::autoclean;
 
@@ -95,14 +92,13 @@ sub gather_files
 {
     my $self = shift;
 
-    require Dist::Zilla::File::InMemory;
-
     # this should die if the file does not exist
     my $file = dist_file($self->dist, $self->source_filename);
 
     my $content = path($file)->slurp_raw;
     $content = Encode::decode($self->encoding, $content, Encode::FB_CROAK());
 
+    require Dist::Zilla::File::InMemory;
     $self->add_file(Dist::Zilla::File::InMemory->new(
         name => $self->filename,
         encoding => $self->encoding,    # only used in Dist::Zilla 5.000+
@@ -148,7 +144,7 @@ Dist::Zilla::Plugin::GenerateFile::ShareDir - Create files in the build, based o
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
 =head1 SYNOPSIS
 
@@ -170,7 +166,9 @@ along to the template, in addition to C<$zilla> and C<$plugin> objects.
 
 I expect that usually the C<-dist> that contains the template will be either a
 plugin bundle, so you can generate a custom-tailored file in your dist, or a
-plugin that subclasses this one.
+plugin that subclasses this one.  (Otherwise, you can just as easily use
+L<Dist::Zilla::Plugin::ShareDir|[GatherDir::Template]> to generate the file
+directly, without needing a sharedir.)
 
 =for Pod::Coverage::TrustPod gather_files
     munge_file
