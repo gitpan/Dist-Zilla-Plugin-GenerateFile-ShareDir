@@ -1,11 +1,11 @@
 use strict;
 use warnings;
 package Dist::Zilla::Plugin::GenerateFile::ShareDir;
-# git description: v0.003-5-gdb26ab5
-$Dist::Zilla::Plugin::GenerateFile::ShareDir::VERSION = '0.004';
 BEGIN {
   $Dist::Zilla::Plugin::GenerateFile::ShareDir::AUTHORITY = 'cpan:ETHER';
 }
+# git description: v0.004-1-g7d7dbc7
+$Dist::Zilla::Plugin::GenerateFile::ShareDir::VERSION = '0.005';
 # ABSTRACT: Create files in the build, based on a template located in a dist sharedir
 # vim: set ts=8 sw=4 tw=78 et :
 
@@ -144,7 +144,7 @@ Dist::Zilla::Plugin::GenerateFile::ShareDir - Create files in the build, based o
 
 =head1 VERSION
 
-version 0.004
+version 0.005
 
 =head1 SYNOPSIS
 
